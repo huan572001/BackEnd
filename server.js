@@ -27,19 +27,22 @@ async function checkCountry(ip) {
 }
 
 // Sử dụng hàm kiểm tra quốc gia
-const ipAddress = "your_target_ip_address";
 
 app.get("/api/ip", (req, res) => {
+  let ABC = "";
   checkCountry(req.ip).then((countryCode) => {
     if (countryCode === "VN") {
+      ABC = "Vietnam";
       console.log("IP belongs to Vietnam");
     } else if (countryCode === "JP") {
+      ABC = "Japan";
       console.log("IP belongs to Japan");
     } else {
+      ABC = "not";
       console.log("Country not identified or not VN/JP");
     }
   });
-  res.json({ ip: req.ip });
+  res.json({ ip: ABC });
 });
 
 app.listen(port, () => {
